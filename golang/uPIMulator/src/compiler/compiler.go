@@ -1,6 +1,7 @@
 package compiler
 
 import (
+	"os"
 	"os/exec"
 	"path/filepath"
 	"strconv"
@@ -56,6 +57,8 @@ func (this *Compiler) CompileBenchmark() {
 		"run",
 		"--privileged",
 		"--rm",
+		"--user",
+		strconv.Itoa(os.Getuid())+":"+strconv.Itoa(os.Getgid()),
 		"-v",
 		this.root_dirpath+":/root/uPIMulator",
 		"bongjoonhyun/upimulator",
@@ -80,6 +83,8 @@ func (this *Compiler) CompileSdk() {
 		"run",
 		"--privileged",
 		"--rm",
+		"--user",
+		strconv.Itoa(os.Getuid())+":"+strconv.Itoa(os.Getgid()),
 		"-v",
 		this.root_dirpath+":/root/uPIMulator",
 		"bongjoonhyun/upimulator",
